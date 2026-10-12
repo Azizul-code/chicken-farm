@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>অর্ডার ট্র্যাক</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="container header-content">
+    <div class="logo">🐔 আমার মুরগি ফার্ম</div>
+    <nav><a href="index.html">হোম</a><a href="track.html">ট্র্যাক</a><a href="admin.html">অ্যাডমিন</a></nav>
+  </div>
+</header>
+<section class="products-section">
+  <div class="container">
+    <h2 class="section-title">🔍 অর্ডার ট্র্যাক</h2>
+    <div class="search-bar" style="max-width:600px;">
+      <input type="text" id="orderIdInput" placeholder="অর্ডার নাম্বার লিখুন">
+      <button class="submit-btn" style="max-width:150px;margin-top:0;" onclick="trackOrder()">ট্র্যাক</button>
+    </div>
+    <div id="trackResult" style="max-width:700px;margin:30px auto;"></div>
+  </div>
+</section>
+<div class="toast" id="toast"></div>
+<script>
+const API = window.location.origin + '/api';
+async function trackOrder() {
+  const id = document.getElementById('orderIdInput').value.trim().toUpperCase();
+  const resultEl = document.getElementById('trackResult');
+  if (!id) return;
+  resultEl.innerHTML = '<p style="text-align:center;color:#718096;">⏳ খোঁজা হচ্ছে...</p>';
+  try {
+    const res = await fetch(API + '/orders/' + id);
+    if (!res.ok) throw new Error('Not found');
+    const o = await res.json();
+    const colors = { pending: '#ed8936', confirmed: '#4299e1', delivered: '#38a169', cancelled: '#e53e3e' };
+    const bn = { pending: 'অপেক্ষমাণ', confirmed: 'কনফার্ম', delivered: 'ডেলিভারড', cancelled: 'বাতিল' };
+    resultEl.innerHTML = '<div style="background:white;border-radius:15px;padding:25px;box-shadow:0 4px 15px rgba(0,0,0,0.08);">' +
+      '<div style="display:flex;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;">' +
+      '<div><div style="font-size:0.85rem;color:#718096;">অর্ডার নাম্বার</div>' +
+      '<div style="font-size:1.5rem;font-weight:bold;color:#ed8936;letter-spacing:1px;">' + o.id + '</div></div>' +
+      '<div style="background:' + colors[o.status] + ';color:white;padding:8px 18px;border-radius:20px;font-weight:600;">' + (bn[o.status]||o.status) + '</div></div>' +
+      '<div style="border-top:1px solid #e2e8f0;padding-top:15px;margin-bottom:15px;"><b>👤 গ্রাহক</b><br>' +
+      'নাম: ' + o.customer.name + '<br>মোবাইল: ' + o.customer.phone + '<br>ঠিকানা: ' + o.customer.address + '</div>' +
+      '<div style="border-top:1px solid #e2e8f0;padding-top:15px;"><b>📦 প্রোডাক্ট</b><br>' +
+      o.items.map(i => '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #e2e8f0;"><span>' + i.name + ' × ' + i.quantity + ' ' + i.unit + '</span><span>৳' + (i.price*i.quantity) + '</span></div>').join('') +
+      '<div style="display:flex;justify-content:space-between;padding:12px 0;font-size:1.2rem;font-weight:bold;color:#ed8936;"><span>সর্বমোট:</span><span>৳' + o.total + '</span></div></div></div>';
+  } catch (err) {
+    resultEl.innerHTML = '<div style="background:#fff5f5;border:2px solid #fc8181;border-radius:15px;padding:25px;text-align:center;color:#c53030;">❌ এই নাম্বারে কোনো অর্ডার নেই</div>';
+  }
+}
+document.getElementById('orderIdInput').addEventListener('keypress', e => { if (e.key === 'Enter') trackOrder(); });
+</script>
+</body>
+</html>
