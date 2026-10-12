@@ -25,7 +25,7 @@
       "name": "দেশি মুরগির ডিম",
       "price": 15,
       "unit": "পিস",
-      "stock": 500,
+      "stock": 498,
       "image": "https://i.postimg.cc/N0dW6r4N/valeria-reverdo-ayziw-IGP8TI-unsplash.jpg",
       "description": "তাজা দেশি মুরগির ডিম।",
       "category": "ডিম"
@@ -81,9 +81,32 @@
       "category": "সার"
     }
   ],
-  "orders": [],
+  "orders": [
+    {
+      "id": "03EC5082",
+      "customer": {
+        "name": "azizul hakim",
+        "phone": "1245525452200",
+        "address": "fgdf",
+        "note": "cfgfv"
+      },
+      "items": [
+        {
+          "id": "3",
+          "name": "দেশি মুরগির ডিম",
+          "price": 15,
+          "unit": "পিস",
+          "image": "https://i.postimg.cc/N0dW6r4N/valeria-reverdo-ayziw-IGP8TI-unsplash.jpg",
+          "quantity": 2
+        }
+      ],
+      "total": 30,
+      "status": "confirmed",
+      "createdAt": "2026-10-12T14:44:45.379Z"
+    }
+  ],
   "admin": {
     "username": "admin",
-    "password": "admin123"
+    "password": "2026"
   }
 }
