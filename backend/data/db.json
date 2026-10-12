@@ -1,5 +1,66 @@
 {
-  "products": [],
+  "products": [
+    {
+      "id": "1",
+      "name": "দেশি মুরগি (ব্রয়লার)",
+      "price": 220,
+      "unit": "কেজি",
+      "stock": 50,
+      "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=500",
+      "description": "তাজা দেশি ব্রয়লার মুরগি। ফার্ম থেকে সরাসরি।",
+      "category": "মুরগি"
+    },
+    {
+      "id": "2",
+      "name": "সোনালি মুরগি",
+      "price": 280,
+      "unit": "কেজি",
+      "stock": 30,
+      "image": "https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=500",
+      "description": "সোনালি জাতের স্বাস্থ্যকর মুরগি।",
+      "category": "মুরগি"
+    },
+    {
+      "id": "3",
+      "name": "দেশি মুরগির ডিম",
+      "price": 15,
+      "unit": "পিস",
+      "stock": 500,
+      "image": "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=500",
+      "description": "তাজা দেশি মুরগির ডিম।",
+      "category": "ডিম"
+    },
+    {
+      "id": "4",
+      "name": "ব্রয়লার ডিম",
+      "price": 12,
+      "unit": "পিস",
+      "stock": 800,
+      "image": "https://images.unsplash.com/photo-1518569656558-1f25e69d93d7?w=500",
+      "description": "ব্রয়লার মুরগির ডিম।",
+      "category": "ডিম"
+    },
+    {
+      "id": "5",
+      "name": "এক দিনের বাচ্চা",
+      "price": 25,
+      "unit": "পিস",
+      "stock": 1000,
+      "image": "https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=500",
+      "description": "এক দিনের সুস্থ বাচ্চা মুরগি।",
+      "category": "বাচ্চা"
+    },
+    {
+      "id": "6",
+      "name": "জৈব সার (মুরগির বিষ্ঠা)",
+      "price": 100,
+      "unit": "কেজি",
+      "stock": 200,
+      "image": "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=500",
+      "description": "উচ্চ মানের জৈব সার। কৃষির জন্য উপযুক্ত।",
+      "category": "সার"
+    }
+  ],
   "orders": [],
   "admin": {
     "username": "admin",
