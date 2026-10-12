@@ -52,6 +52,26 @@
     },
     {
       "id": "6",
+      "name": "ব্রয়লার খাবার",
+      "price": 80,
+      "unit": "কেজি",
+      "stock": 200,
+      "image": "https://i.postimg.cc/j2RTvrfq/5.jpg",
+      "description": "উচ্চ মানের ব্রয়লার খাবার।",
+      "category": "খাবার"
+    },
+    {
+      "id": "7",
+      "name": "রয়লার খাদ্য প্রস্তুতকারক যন্ত্রপাতি",
+      "price": 250,
+      "unit": "এক পিস",
+      "stock": 200,
+      "image": "https://i.postimg.cc/G2GYGvFW/Automatic-feeding-system.jpg",
+      "description": "উচ্চ মানের যন্ত্রপাত",
+      "category": "যন্ত্রপাত"
+    },
+    {
+      "id": "8",
       "name": "জৈব সার (মুরগির বিষ্ঠা)",
       "price": 100,
       "unit": "কেজি",
