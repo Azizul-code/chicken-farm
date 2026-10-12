@@ -5,7 +5,7 @@
       "name": "দেশি মুরগি (ব্রয়লার)",
       "price": 220,
       "unit": "কেজি",
-      "stock": 50,
+      "stock": 48,
       "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=500",
       "description": "তাজা দেশি ব্রয়লার মুরগি। ফার্ম থেকে সরাসরি।",
       "category": "মুরগি"
@@ -55,7 +55,7 @@
       "name": "ব্রয়লার খাবার",
       "price": 80,
       "unit": "কেজি",
-      "stock": 200,
+      "stock": 199,
       "image": "https://i.postimg.cc/j2RTvrfq/5.jpg",
       "description": "উচ্চ মানের ব্রয়লার খাবার।",
       "category": "খাবার"
@@ -103,6 +103,81 @@
       "total": 30,
       "status": "confirmed",
       "createdAt": "2026-10-12T14:44:45.379Z"
+    },
+    {
+      "id": "246EFF47",
+      "customer": {
+        "name": "azizul hakim",
+        "phone": "1245525452200",
+        "address": "Masterpara bazar",
+        "note": "dfg",
+        "paymentMethod": "cod",
+        "transactionId": "",
+        "senderNumber": ""
+      },
+      "items": [
+        {
+          "id": "1",
+          "name": "দেশি মুরগি (ব্রয়লার)",
+          "price": 220,
+          "unit": "কেজি",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=500",
+          "quantity": 1
+        }
+      ],
+      "total": 220,
+      "status": "pending",
+      "createdAt": "2026-10-12T15:14:32.708Z"
+    },
+    {
+      "id": "F789F4A2",
+      "customer": {
+        "name": "Azizul Hakim",
+        "phone": "1245525452200",
+        "address": "dfg",
+        "note": "fg",
+        "paymentMethod": "bkash",
+        "transactionId": "fgdfgdfg",
+        "senderNumber": "dfgdfg"
+      },
+      "items": [
+        {
+          "id": "1",
+          "name": "দেশি মুরগি (ব্রয়লার)",
+          "price": 220,
+          "unit": "কেজি",
+          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=500",
+          "quantity": 1
+        }
+      ],
+      "total": 220,
+      "status": "pending",
+      "createdAt": "2026-10-12T15:25:34.449Z"
+    },
+    {
+      "id": "7840D000",
+      "customer": {
+        "name": "Azizul Hakim",
+        "phone": "1245525452200",
+        "address": "sdfsd",
+        "note": "sdf",
+        "paymentMethod": "bkash",
+        "transactionId": "dsfsdfd",
+        "senderNumber": "sdfsdf"
+      },
+      "items": [
+        {
+          "id": "6",
+          "name": "ব্রয়লার খাবার",
+          "price": 80,
+          "unit": "কেজি",
+          "image": "https://i.postimg.cc/j2RTvrfq/5.jpg",
+          "quantity": 1
+        }
+      ],
+      "total": 80,
+      "status": "delivered",
+      "createdAt": "2026-10-12T15:40:57.124Z"
     }
   ],
   "admin": {

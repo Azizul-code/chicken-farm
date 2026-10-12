@@ -81,7 +81,8 @@ function renderOrders() {
 
   let html = '<table><thead><tr>' +
     '<th>অর্ডার ID</th><th>গ্রাহক</th><th>মোবাইল</th>' +
-    '<th>মোট</th><th>স্ট্যাটাস</th><th>তারিখ</th><th>পরিবর্তন</th>' +
+      '<th>পেমেন্ট</th><th>TrxID</th>' +
+      '<th>মোট</th><th>স্ট্যাটাস</th><th>তারিখ</th><th>পরিবর্তন</th>' +
     '</tr></thead><tbody>';
 
   allOrders.forEach(o => {
@@ -90,6 +91,8 @@ function renderOrders() {
       '<td><strong>' + o.id + '</strong></td>' +
       '<td>' + o.customer.name + '</td>' +
       '<td>' + o.customer.phone + '</td>' +
+      '<td>' + (o.customer.paymentMethod || 'cod') + '</td>' +
+      '<td>' + (o.customer.transactionId || '-') + '</td>' +
       '<td><strong>৳' + o.total + '</strong></td>' +
       '<td><span class="badge ' + o.status + '">' + o.status + '</span></td>' +
       '<td>' + date + '</td>' +
