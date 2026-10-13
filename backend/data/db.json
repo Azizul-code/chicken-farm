@@ -1,187 +1,212 @@
 {
-  "products": [
-    {
-      "id": "1",
-      "name": "দেশি মুরগি (ব্রয়লার)",
-      "price": 220,
-      "unit": "কেজি",
-      "stock": 48,
-      "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=500",
-      "description": "তাজা দেশি ব্রয়লার মুরগি। ফার্ম থেকে সরাসরি।",
-      "category": "মুরগি"
+    "products": [
+        {
+            "id": "1",
+            "name": "দেশি মুরগি (ব্রয়লার)",
+            "price": 220,
+            "unit": "কেজি",
+            "stock": 48,
+            "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=500",
+            "description": "তাজা দেশি ব্রয়লার মুরগি। ফার্ম থেকে সরাসরি।",
+            "category": "মুরগি"
     },
-    {
-      "id": "2",
-      "name": "সোনালি মুরগি",
-      "price": 280,
-      "unit": "কেজি",
-      "stock": 30,
-      "image": "https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=500",
-      "description": "সোনালি জাতের স্বাস্থ্যকর মুরগি।",
-      "category": "মুরগি"
+        {
+            "id": "2",
+            "name": "সোনালি মুরগি",
+            "price": 280,
+            "unit": "কেজি",
+            "stock": 30,
+            "image": "https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=500",
+            "description": "সোনালি জাতের স্বাস্থ্যকর মুরগি।",
+            "category": "মুরগি"
     },
-    {
-      "id": "3",
-      "name": "দেশি মুরগির ডিম",
-      "price": 15,
-      "unit": "পিস",
-      "stock": 498,
-      "image": "https://i.postimg.cc/N0dW6r4N/valeria-reverdo-ayziw-IGP8TI-unsplash.jpg",
-      "description": "তাজা দেশি মুরগির ডিম।",
-      "category": "ডিম"
+        {
+            "id": "3",
+            "name": "দেশি মুরগির ডিম",
+            "price": 15,
+            "unit": "পিস",
+            "stock": 498,
+            "image": "https://i.postimg.cc/N0dW6r4N/valeria-reverdo-ayziw-IGP8TI-unsplash.jpg",
+            "description": "তাজা দেশি মুরগির ডিম।",
+            "category": "ডিম"
     },
-    {
-      "id": "4",
-      "name": "ব্রয়লার ডিম",
-      "price": 12,
-      "unit": "পিস",
-      "stock": 800,
-      "image": "https://images.unsplash.com/photo-1518569656558-1f25e69d93d7?w=500",
-      "description": "ব্রয়লার মুরগির ডিম।",
-      "category": "ডিম"
+        {
+            "id": "4",
+            "name": "ব্রয়লার ডিম",
+            "price": 12,
+            "unit": "পিস",
+            "stock": 800,
+            "image": "https://images.unsplash.com/photo-1518569656558-1f25e69d93d7?w=500",
+            "description": "ব্রয়লার মুরগির ডিম।",
+            "category": "ডিম"
     },
-    {
-      "id": "5",
-      "name": "এক দিনের বাচ্চা",
-      "price": 25,
-      "unit": "পিস",
-      "stock": 1000,
-      "image": "https://i.postimg.cc/ydvYSdgC/mulugeta-wolde-TV7y-EKVw3hw-unsplash.jpg",
-      "description": "এক দিনের সুস্থ বাচ্চা মুরগি।",
-      "category": "বাচ্চা"
+        {
+            "id": "5",
+            "name": "এক দিনের বাচ্চা",
+            "price": 25,
+            "unit": "পিস",
+            "stock": 1000,
+            "image": "https://i.postimg.cc/ydvYSdgC/mulugeta-wolde-TV7y-EKVw3hw-unsplash.jpg",
+            "description": "এক দিনের সুস্থ বাচ্চা মুরগি।",
+            "category": "বাচ্চা"
     },
-    {
-      "id": "6",
-      "name": "ব্রয়লার খাবার",
-      "price": 80,
-      "unit": "কেজি",
-      "stock": 199,
-      "image": "https://i.postimg.cc/j2RTvrfq/5.jpg",
-      "description": "উচ্চ মানের ব্রয়লার খাবার।",
-      "category": "খাবার"
+        {
+            "id": "6",
+            "name": "ব্রয়লার খাবার",
+            "price": 80,
+            "unit": "কেজি",
+            "stock": 159,
+            "image": "https://i.postimg.cc/j2RTvrfq/5.jpg",
+            "description": "উচ্চ মানের ব্রয়লার খাবার।",
+            "category": "খাবার"
     },
-    {
-      "id": "7",
-      "name": "রয়লার খাদ্য প্রস্তুতকারক যন্ত্রপাতি",
-      "price": 250,
-      "unit": "এক পিস",
-      "stock": 200,
-      "image": "https://i.postimg.cc/G2GYGvFW/Automatic-feeding-system.jpg",
-      "description": "উচ্চ মানের যন্ত্রপাত",
-      "category": "যন্ত্রপাত"
+        {
+            "id": "7",
+            "name": "রয়লার খাদ্য প্রস্তুতকারক যন্ত্রপাতি",
+            "price": 250,
+            "unit": "এক পিস",
+            "stock": 200,
+            "image": "https://i.postimg.cc/G2GYGvFW/Automatic-feeding-system.jpg",
+            "description": "উচ্চ মানের যন্ত্রপাত",
+            "category": "যন্ত্রপাত"
     },
-    {
-      "id": "8",
-      "name": "জৈব সার (মুরগির বিষ্ঠা)",
-      "price": 100,
-      "unit": "কেজি",
-      "stock": 200,
-      "image": "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=500",
-      "description": "উচ্চ মানের জৈব সার। কৃষির জন্য উপযুক্ত।",
-      "category": "সার"
+        {
+            "id": "8",
+            "name": "জৈব সার (মুরগির বিষ্ঠা)",
+            "price": 100,
+            "unit": "কেজি",
+            "stock": 200,
+            "image": "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=500",
+            "description": "উচ্চ মানের জৈব সার। কৃষির জন্য উপযুক্ত।",
+            "category": "সার"
     }
   ],
-  "orders": [
-    {
-      "id": "03EC5082",
-      "customer": {
-        "name": "azizul hakim",
-        "phone": "1245525452200",
-        "address": "fgdf",
-        "note": "cfgfv"
-      },
-      "items": [
+    "orders": [
         {
-          "id": "3",
-          "name": "দেশি মুরগির ডিম",
-          "price": 15,
-          "unit": "পিস",
-          "image": "https://i.postimg.cc/N0dW6r4N/valeria-reverdo-ayziw-IGP8TI-unsplash.jpg",
-          "quantity": 2
+            "id": "03EC5082",
+            "customer": {
+                "name": "azizul hakim",
+                "phone": "1245525452200",
+                "address": "fgdf",
+                "note": "cfgfv"
+            },
+            "items": [
+                {
+                    "id": "3",
+                    "name": "দেশি মুরগির ডিম",
+                    "price": 15,
+                    "unit": "পিস",
+                    "image": "https://i.postimg.cc/N0dW6r4N/valeria-reverdo-ayziw-IGP8TI-unsplash.jpg",
+                    "quantity": 2
         }
       ],
-      "total": 30,
-      "status": "confirmed",
-      "createdAt": "2026-10-12T14:44:45.379Z"
+            "total": 30,
+            "status": "confirmed",
+            "createdAt": "2026-10-12T14:44:45.379Z"
     },
-    {
-      "id": "246EFF47",
-      "customer": {
-        "name": "azizul hakim",
-        "phone": "1245525452200",
-        "address": "Masterpara bazar",
-        "note": "dfg",
-        "paymentMethod": "cod",
-        "transactionId": "",
-        "senderNumber": ""
-      },
-      "items": [
         {
-          "id": "1",
-          "name": "দেশি মুরগি (ব্রয়লার)",
-          "price": 220,
-          "unit": "কেজি",
-          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=500",
-          "quantity": 1
+            "id": "246EFF47",
+            "customer": {
+                "name": "azizul hakim",
+                "phone": "1245525452200",
+                "address": "Masterpara bazar",
+                "note": "dfg",
+                "paymentMethod": "cod",
+                "transactionId": "",
+                "senderNumber": ""
+            },
+            "items": [
+                {
+                    "id": "1",
+                    "name": "দেশি মুরগি (ব্রয়লার)",
+                    "price": 220,
+                    "unit": "কেজি",
+                    "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=500",
+                    "quantity": 1
         }
       ],
-      "total": 220,
-      "status": "pending",
-      "createdAt": "2026-10-12T15:14:32.708Z"
+            "total": 220,
+            "status": "pending",
+            "createdAt": "2026-10-12T15:14:32.708Z"
     },
-    {
-      "id": "F789F4A2",
-      "customer": {
-        "name": "Azizul Hakim",
-        "phone": "1245525452200",
-        "address": "dfg",
-        "note": "fg",
-        "paymentMethod": "bkash",
-        "transactionId": "fgdfgdfg",
-        "senderNumber": "dfgdfg"
-      },
-      "items": [
         {
-          "id": "1",
-          "name": "দেশি মুরগি (ব্রয়লার)",
-          "price": 220,
-          "unit": "কেজি",
-          "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=500",
-          "quantity": 1
+            "id": "F789F4A2",
+            "customer": {
+                "name": "Azizul Hakim",
+                "phone": "1245525452200",
+                "address": "dfg",
+                "note": "fg",
+                "paymentMethod": "bkash",
+                "transactionId": "fgdfgdfg",
+                "senderNumber": "dfgdfg"
+            },
+            "items": [
+                {
+                    "id": "1",
+                    "name": "দেশি মুরগি (ব্রয়লার)",
+                    "price": 220,
+                    "unit": "কেজি",
+                    "image": "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=500",
+                    "quantity": 1
         }
       ],
-      "total": 220,
-      "status": "pending",
-      "createdAt": "2026-10-12T15:25:34.449Z"
+            "total": 220,
+            "status": "pending",
+            "createdAt": "2026-10-12T15:25:34.449Z"
     },
-    {
-      "id": "7840D000",
-      "customer": {
-        "name": "Azizul Hakim",
-        "phone": "1245525452200",
-        "address": "sdfsd",
-        "note": "sdf",
-        "paymentMethod": "bkash",
-        "transactionId": "dsfsdfd",
-        "senderNumber": "sdfsdf"
-      },
-      "items": [
         {
-          "id": "6",
-          "name": "ব্রয়লার খাবার",
-          "price": 80,
-          "unit": "কেজি",
-          "image": "https://i.postimg.cc/j2RTvrfq/5.jpg",
-          "quantity": 1
+            "id": "7840D000",
+            "customer": {
+                "name": "Azizul Hakim",
+                "phone": "1245525452200",
+                "address": "sdfsd",
+                "note": "sdf",
+                "paymentMethod": "bkash",
+                "transactionId": "dsfsdfd",
+                "senderNumber": "sdfsdf"
+            },
+            "items": [
+                {
+                    "id": "6",
+                    "name": "ব্রয়লার খাবার",
+                    "price": 80,
+                    "unit": "কেজি",
+                    "image": "https://i.postimg.cc/j2RTvrfq/5.jpg",
+                    "quantity": 1
         }
       ],
-      "total": 80,
-      "status": "delivered",
-      "createdAt": "2026-10-12T15:40:57.124Z"
+            "total": 80,
+            "status": "delivered",
+            "createdAt": "2026-10-12T15:40:57.124Z"
+    },
+        {
+            "id": "B15B2DD4",
+            "customer": {
+                "name": "Azizul Hakim",
+                "phone": "1245525452200",
+                "address": "fg",
+                "note": "wef",
+                "paymentMethod": "nagad",
+                "transactionId": "2345.345345",
+                "senderNumber": "4324589798"
+            },
+            "items": [
+                {
+                    "id": "6",
+                    "name": "ব্রয়লার খাবার",
+                    "price": 80,
+                    "unit": "কেজি",
+                    "image": "https://i.postimg.cc/j2RTvrfq/5.jpg",
+                    "quantity": 40
+        }
+      ],
+            "total": 3200,
+            "status": "pending",
+            "createdAt": "2026-10-13T02:03:22.626Z"
     }
   ],
-  "admin": {
-    "username": "admin",
-    "password": "2026"
-  }
+    "admin": {
+        "username": "admin",
+        "password": "2026"
+    }
 }
