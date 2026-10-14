@@ -63,7 +63,7 @@
         <div class="modal-content">
             <button class="close-modal" onclick="closeCheckout()">✕</button>
             <h2>📦 অর্ডার তথ্য দিন</h2>
-            <form id="checkoutForm" onsubmit="placeOrder(event)">
+            <form id="checkoutForm" onsubmit="return placeOrder(event)" novalidate>
                 <div class="form-group">
                     <label>আপনার নাম *</label>
                     <input type="text" id="custName" required placeholder="যেমন: রহিম মিয়া">
@@ -84,6 +84,7 @@
                 <div class="form-group">
                     <label>পেমেন্ট পদ্ধতি *</label>
                     <select id="paymentMethod" onchange="togglePaymentInfo()" style="width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem;">
+                        <option value="bkash">📱 পেমেন্ট নির্বাচন করুন</option>
                         <option value="cod">💵 ক্যাশ অন ডেলিভারি</option>
                         <option value="bkash">📱 বিকাশ</option>
                         <option value="nagad">📱 নগদ</option>
@@ -102,11 +103,11 @@
                     </p>
                     <div class="form-group">
                         <label>ট্রানজেকশন আইডি (TrxID) *</label>
-                        <input type="text" id="custTrxId" placeholder="যেমন: 8N7A2B4C9D">
+                        <input type="text" id="custTrxId" placeholder="যেমন: 8N7A2B4C9D" minlength="6" maxlength="20">
                     </div>
                     <div class="form-group">
                         <label>যে নম্বর থেকে পাঠিয়েছেন *</label>
-                        <input type="tel" id="custSenderNumber" placeholder="01XXXXXXXXX">
+                        <input type="tel" id="custSenderNumber" placeholder="01XXXXXXXXX" pattern="01[3-9][0-9]{8}" maxlength="11">
                     </div>
                 </div>
 
