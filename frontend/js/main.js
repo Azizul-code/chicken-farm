@@ -11,7 +11,7 @@ async function loadProducts() {
         renderProducts();
     } catch (err) {
         console.error('Failed to load products:', err);
-        showToast('প্রোডাক্ট লোড করতে সমস্যা', true);
+        showToast('Failed to load products', true);
     }
 }
 
@@ -22,7 +22,7 @@ function renderProducts() {
     if (searchTerm) filtered = filtered.filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
     if (filtered.length === 0) {
-        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#a0aec0;">কোনো প্রোডাক্ট পাওয়া যায়নি</div>';
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#a0aec0;">No products found</div>';
         return;
     }
 
@@ -35,10 +35,10 @@ function renderProducts() {
         '<p class="product-desc">' + p.description + '</p>' +
         '<div class="product-price">৳' + p.price + ' <span>/ ' + p.unit + '</span></div>' +
         '<div class="product-stock ' + (p.stock <= 0 ? 'out' : '') + '">' +
-        (p.stock > 0 ? '✓ স্টকে আছে (' + p.stock + ')' : '✗ স্টক শেষ') +
+        (p.stock > 0 ? '✓ In Stock (' + p.stock + ')' : '✗ Out of Stock') +
         '</div>' +
         '<button class="add-btn" ' + (p.stock <= 0 ? 'disabled' : '') + ' onclick="addToCart(\'' + p.id + '\')">' +
-        (p.stock > 0 ? '🛒 কার্টে যোগ করুন' : 'স্টক নেই') +
+        (p.stock > 0 ? '🛒 Add to Cart' : 'Out of Stock') +
         '</button></div></div>'
     ).join('');
 }
@@ -49,7 +49,7 @@ function addToCart(id) {
     const existing = cart.find(item => item.id === id);
     if (existing) {
         if (existing.quantity >= product.stock) {
-            showToast('স্টকে পর্যাপ্ত নেই', true);
+            showToast('Not enough stock', true);
             return;
         }
         existing.quantity++;
@@ -64,7 +64,7 @@ function addToCart(id) {
         });
     }
     saveCart();
-    showToast(product.name + ' কার্টে যোগ হয়েছে ✓');
+    showToast(product.name + ' added to cart ✓');
 }
 
 function saveCart() {
@@ -79,7 +79,7 @@ function updateCartUI() {
     const footerEl = document.getElementById('cartFooter');
 
     if (cart.length === 0) {
-        itemsEl.innerHTML = '<div class="empty-cart"><div class="empty-cart-icon">🛒</div><p>আপনার কার্ট খালি</p></div>';
+        itemsEl.innerHTML = '<div class="empty-cart"><div class="empty-cart-icon">🛒</div><p>Your cart is empty</p></div>';
         footerEl.style.display = 'none';
         return;
     }
@@ -114,7 +114,7 @@ function changeQty(id, delta) {
     }
     if (product && item.quantity > product.stock) {
         item.quantity = product.stock;
-        showToast('স্টকে পর্যাপ্ত নেই', true);
+        showToast('Not enough stock', true);
     }
     saveCart();
 }

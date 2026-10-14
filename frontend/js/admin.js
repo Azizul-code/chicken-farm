@@ -31,9 +31,9 @@ async function login(e) {
         const data = await res.json();
         localStorage.setItem('adminToken', data.token);
         showDashboard();
-        showToast('✅ লগইন সফল');
+        showToast('✅ Login successful');
     } catch (err) {
-        showToast('❌ ভুল ইউজারনেম বা পাসওয়ার্ড', true);
+        showToast('❌ Wrong username or password', true);
     }
 }
 
@@ -80,18 +80,18 @@ async function loadOrders() {
 function renderOrders() {
     const el = document.getElementById('ordersTable');
     if (allOrders.length === 0) {
-        el.innerHTML = '<div style="padding:40px;text-align:center;color:#a0aec0;">এখনো কোনো অর্ডার নেই</div>';
+        el.innerHTML = '<div style="padding:40px;text-align:center;color:#a0aec0;">No orders yet</div>';
         return;
     }
 
     let html = '<table><thead><tr>' +
-        '<th>অর্ডার ID</th><th>গ্রাহক</th><th>মোবাইল</th>' +
-        '<th>পেমেন্ট</th><th>TrxID</th>' +
-        '<th>মোট</th><th>স্ট্যাটাস</th><th>তারিখ</th><th>পরিবর্তন</th>' +
+        '<th>Order ID</th><th>Customer</th><th>Mobile</th>' +
+        '<th>Payment</th><th>TrxID</th>' +
+        '<th>Total</th><th>Status</th><th>Date</th><th>Change</th>' +
         '</tr></thead><tbody>';
 
     allOrders.forEach(o => {
-        const date = new Date(o.createdAt).toLocaleDateString('bn-BD');
+        const date = new Date(o.createdAt).toLocaleDateString('en-US');
         html += '<tr>' +
             '<td><strong>' + o.id + '</strong></td>' +
             '<td>' + o.customer.name + '</td>' +
@@ -124,11 +124,11 @@ async function updateOrderStatus(id, status) {
                 status: status
             })
         });
-        showToast('✅ স্ট্যাটাস আপডেট হয়েছে');
+        showToast('✅ Status updated');
         loadOrders();
         loadStats();
     } catch (err) {
-        showToast('❌ আপডেট ব্যর্থ', true);
+        showToast('❌ Update failed', true);
     }
 }
 
@@ -141,8 +141,8 @@ async function loadProducts() {
 function renderProductsTable() {
     const el = document.getElementById('productsTable');
     let html = '<table><thead><tr>' +
-        '<th>ছবি</th><th>নাম</th><th>ক্যাটাগরি</th>' +
-        '<th>দাম</th><th>স্টক</th><th>অ্যাকশন</th>' +
+        '<th>Image</th><th>Name</th><th>Category</th>' +
+        '<th>Price</th><th>Stock</th><th>Action</th>' +
         '</tr></thead><tbody>';
 
     allProducts.forEach(p => {
@@ -168,7 +168,7 @@ function openProductForm(id) {
 
     if (id) {
         const p = allProducts.find(x => x.id === id);
-        document.getElementById('productFormTitle').textContent = 'প্রোডাক্ট এডিট';
+        document.getElementById('productFormTitle').textContent = 'Edit Product';
         document.getElementById('productId').value = p.id;
         document.getElementById('pName').value = p.name;
         document.getElementById('pPrice').value = p.price;
@@ -178,7 +178,7 @@ function openProductForm(id) {
         document.getElementById('pImage').value = p.image;
         document.getElementById('pDesc').value = p.description;
     } else {
-        document.getElementById('productFormTitle').textContent = 'নতুন প্রোডাক্ট';
+        document.getElementById('productFormTitle').textContent = 'New Product';
         document.getElementById('productForm').reset();
         document.getElementById('productId').value = '';
     }
@@ -218,26 +218,26 @@ async function saveProduct(e) {
             body: JSON.stringify(data)
         });
 
-        showToast(id ? '✅ আপডেট হয়েছে' : '✅ নতুন প্রোডাক্ট যোগ হয়েছে');
+        showToast(id ? '✅ Updated' : '✅ New product added');
         closeProductForm();
         loadProducts();
         loadStats();
     } catch (err) {
-        showToast('❌ সেভ ব্যর্থ', true);
+        showToast('❌ Save failed', true);
     }
 }
 
 async function deleteProduct(id) {
-    if (!confirm('এই প্রোডাক্ট ডিলিট করতে চান?')) return;
+    if (!confirm('Do you want to delete this product?')) return;
     try {
         await fetch(API + '/products/' + id, {
             method: 'DELETE'
         });
-        showToast('🗑️ ডিলিট হয়েছে');
+        showToast('🗑️ Deleted');
         loadProducts();
         loadStats();
     } catch (err) {
-        showToast('❌ ডিলিট ব্যর্থ', true);
+        showToast('❌ Delete failed', true);
     }
 }
 
@@ -278,7 +278,7 @@ function renderNotifications() {
   if (!list) return;
   
   if (notifications.length === 0) {
-    list.innerHTML = '<div class="notif-empty">কোনো নতুন অর্ডার নেই</div>';
+    list.innerHTML = '<div class="notif-empty">No new orders</div>';
     return;
   }
   
@@ -287,13 +287,13 @@ function renderNotifications() {
   
   list.innerHTML = sorted.slice(0, 20).map(n => `
     <div class="notif-item ${n.read ? '' : 'unread'}" onclick="openOrder('${n.id}')">
-      <div class="notif-item-id">অর্ডার #${n.id}</div>
+      <div class="notif-item-id">Order #${n.id}</div>
       <div class="notif-item-customer">
         👤 ${n.customer.name}
         <span class="notif-item-amount">৳${n.total}</span>
       </div>
       <div class="notif-item-details">
-        📞 ${n.customer.phone} | ${new Date(n.createdAt).toLocaleString('bn-BD')}
+        📞 ${n.customer.phone} | ${new Date(n.createdAt).toLocaleString('en-US')}
       </div>
     </div>
   `).join('');
@@ -357,7 +357,7 @@ function openOrder(orderId) {
 function clearNotifications() {
   notifications.forEach(n => n.read = true);
   saveNotifications();
-  showToast('✅ সব notification পঠিত হিসেবে চিহ্নিত');
+  showToast('✅ All notifications marked as read');
 }
 
 // Save notifications
@@ -395,9 +395,9 @@ async function checkNewOrders() {
       
       // Show toast
       if (newOrders.length === 1) {
-        showToast(`🔔 নতুন অর্ডার! #${newOrders[0].id}`);
+        showToast(`🔔 New order! #${newOrders[0].id}`);
       } else {
-        showToast(`🔔 ${newOrders.length}টি নতুন অর্ডার!`);
+        showToast(`🔔 ${newOrders.length} new orders!`);
       }
       
       // Play sound (optional)

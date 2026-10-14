@@ -1,6 +1,6 @@
 function openCheckout() {
   if (cart.length === 0) {
-    showToast('কার্ট খালি', true);
+    showToast('Cart is empty', true);
     return;
   }
   toggleCart();
@@ -26,31 +26,31 @@ async function placeOrder(e) {
   const paymentMethodEl = document.getElementById('paymentMethod');
   const paymentMethod = paymentMethodEl ? paymentMethodEl.value : 'cod';
 
-  // ১. নাম চেক
+  // 1. Name check
   if (!name || name.length < 3) {
-    showToast('❌ সঠিক নাম লিখুন (কমপক্ষে ৩ অক্ষর)', true);
+    showToast('❌ Please enter a valid name (at least 3 characters)', true);
     document.getElementById('custName').focus();
     return false;
   }
 
-  // ২. মোবাইল নাম্বার চেক
+  // 2. Mobile number check
   const phoneRegex = /^01[3-9]\d{8}$/;
   if (!phoneRegex.test(phone)) {
-    showToast('❌ সঠিক মোবাইল নাম্বার দিন (যেমন: 01712345678)', true);
+    showToast('❌ Please enter a valid mobile number (e.g., 01712345678)', true);
     document.getElementById('custPhone').focus();
     return false;
   }
 
-  // ৩. ঠিকানা চেক
+  // 3. Address check
   if (!address || address.length < 5) {
-    showToast('❌ সম্পূর্ণ ঠিকানা লিখুন', true);
+    showToast('❌ Please enter your full address', true);
     document.getElementById('custAddress').focus();
     return false;
   }
 
-  // ৪. Payment method চেক
+  // 4. Payment method check
   if (!paymentMethod || paymentMethod === '') {
-    showToast('❌ পেমেন্ট পদ্ধতি সিলেক্ট করুন', true);
+    showToast('❌ Please select a payment method', true);
     if (paymentMethodEl) paymentMethodEl.focus();
     return false;
   }
@@ -58,7 +58,7 @@ async function placeOrder(e) {
   let trxId = '';
   let senderNumber = '';
 
-  // ৫. bKash/Nagad হলে TrxID ও Sender Number বাধ্যতামূলক
+  // 5. If bKash/Nagad, TrxID and Sender Number are required
   if (paymentMethod === 'bkash' || paymentMethod === 'nagad') {
     const trxIdEl = document.getElementById('custTrxId');
     const senderNumberEl = document.getElementById('custSenderNumber');
@@ -67,25 +67,25 @@ async function placeOrder(e) {
     senderNumber = senderNumberEl ? senderNumberEl.value.trim() : '';
 
     if (!trxId) {
-      showToast('❌ ট্রানজেকশন আইডি (TrxID) লিখুন', true);
+      showToast('❌ Please enter the Transaction ID (TrxID)', true);
       if (trxIdEl) trxIdEl.focus();
       return false;
     }
 
     if (trxId.length < 6) {
-      showToast('❌ সঠিক TrxID লিখুন (কমপক্ষে ৬ অক্ষর)', true);
+      showToast('❌ Please enter a valid TrxID (at least 6 characters)', true);
       if (trxIdEl) trxIdEl.focus();
       return false;
     }
 
     if (!senderNumber) {
-      showToast('❌ যে নম্বর থেকে টাকা পাঠিয়েছেন সেটি লিখুন', true);
+      showToast('❌ Please enter the number you sent money from', true);
       if (senderNumberEl) senderNumberEl.focus();
       return false;
     }
 
     if (!phoneRegex.test(senderNumber)) {
-      showToast('❌ সঠিক sender মোবাইল নাম্বার দিন', true);
+      showToast('❌ Please enter a valid sender mobile number', true);
       if (senderNumberEl) senderNumberEl.focus();
       return false;
     }
@@ -108,7 +108,7 @@ async function placeOrder(e) {
   try {
     const btn = e.target.querySelector('button[type=submit]');
     btn.disabled = true;
-    btn.textContent = '⏳ প্রসেস হচ্ছে...';
+    btn.textContent = '⏳ Processing...';
 
     const res = await fetch(API + '/orders', {
       method: 'POST',
@@ -130,12 +130,12 @@ async function placeOrder(e) {
     loadProducts();
   } catch (err) {
     console.error(err);
-    showToast('অর্ডার দিতে সমস্যা হয়েছে', true);
+    showToast('Failed to place order', true);
   } finally {
     const btn = e.target.querySelector('button[type=submit]');
     if (btn) {
       btn.disabled = false;
-      btn.textContent = '🎉 অর্ডার কনফার্ম করুন';
+      btn.textContent = '🎉 Confirm Order';
     }
   }
   return false;
