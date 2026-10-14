@@ -12,18 +12,32 @@
 
     <header>
         <div class="container header-content">
-            <div class="logo">🐔 আমার ফার্ম</div>
+            <div class="logo">🐔 আমার মুরগি ফার্ম</div>
             <nav>
                 <a href="index.html">হোম</a>
                 <a href="track.html">অর্ডার ট্র্যাক</a>
                 <a href="admin.html">অ্যাডমিন</a>
+
+                <!-- Notification Bell (only for admin) -->
+                <div class="notif-wrapper" id="adminNotifWrapper" style="display:none;">
+                    <button class="notif-btn" onclick="openAdminFromBell()" title="নতুন অর্ডার দেখতে ক্লিক করুন">
+                        🔔
+                        <span class="notif-badge" id="notifBadge" style="display:none;">0</span>
+                    </button>
+                </div>
+
                 <button class="cart-btn" id="cartBtn">🛒 কার্ট <span class="cart-count" id="cartCount">0</span></button>
             </nav>
         </div>
     </header>
 
     <section class="hero">
-        <div class="container">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="videos/Farm-video.mp4" type="video/mp4">
+            আপনার browser video support করে না।
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
             <h1>🍗 ফার্ম থেকে সরাসরি আপনার ঘরে</h1>
             <p>তাজা মুরগি, ডিম, বাচ্চা ও জৈব সার। সেরা দামে সেরা মান।</p>
         </div>
@@ -152,6 +166,7 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/notifications.js"></script>
     <script src="js/checkout.js"></script>
 </body>
 

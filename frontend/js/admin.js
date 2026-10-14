@@ -249,3 +249,207 @@ function showToast(msg, isError) {
         toast.className = 'toast';
     }, 2500);
 }
+
+// ============================================
+// NOTIFICATION SYSTEM
+// ============================================
+
+let notifications = JSON.parse(localStorage.getItem('adminNotifications') || '[]');
+let notifCheckInterval = null;
+
+// Calculate new notifications
+function updateNotificationBadge() {
+  const badge = document.getElementById('notifBadge');
+  if (!badge) return;
+  
+  const unreadCount = notifications.filter(n => !n.read).length;
+  
+  if (unreadCount > 0) {
+    badge.textContent = unreadCount > 99 ? '99+' : unreadCount;
+    badge.style.display = 'flex';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+// Render notification list
+function renderNotifications() {
+  const list = document.getElementById('notifList');
+  if (!list) return;
+  
+  if (notifications.length === 0) {
+    list.innerHTML = '<div class="notif-empty">কোনো নতুন অর্ডার নেই</div>';
+    return;
+  }
+  
+  // Sort by date (newest first)
+  const sorted = [...notifications].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  
+  list.innerHTML = sorted.slice(0, 20).map(n => `
+    <div class="notif-item ${n.read ? '' : 'unread'}" onclick="openOrder('${n.id}')">
+      <div class="notif-item-id">অর্ডার #${n.id}</div>
+      <div class="notif-item-customer">
+        👤 ${n.customer.name}
+        <span class="notif-item-amount">৳${n.total}</span>
+      </div>
+      <div class="notif-item-details">
+        📞 ${n.customer.phone} | ${new Date(n.createdAt).toLocaleString('bn-BD')}
+      </div>
+    </div>
+  `).join('');
+}
+
+// Toggle notification dropdown
+function toggleNotifications() {
+  const dropdown = document.getElementById('notifDropdown');
+  if (!dropdown) return;
+  
+  dropdown.classList.toggle('open');
+  
+  // Mark all as read when opening
+  if (dropdown.classList.contains('open')) {
+    // Don't auto-mark; only on explicit click
+  }
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  const wrapper = document.querySelector('.notif-wrapper');
+  const dropdown = document.getElementById('notifDropdown');
+  if (wrapper && dropdown && !wrapper.contains(e.target)) {
+    dropdown.classList.remove('open');
+  }
+});
+
+// Open specific order
+function openOrder(orderId) {
+  // Mark as read
+  const notif = notifications.find(n => n.id === orderId);
+  if (notif) {
+    notif.read = true;
+    saveNotifications();
+  }
+  
+  // Close dropdown
+  const dropdown = document.getElementById('notifDropdown');
+  if (dropdown) dropdown.classList.remove('open');
+  
+  // Switch to orders tab
+  const ordersTabBtn = document.querySelectorAll('.tab-btn')[1];
+  if (ordersTabBtn) {
+    switchTab('orders', ordersTabBtn);
+  }
+  
+  // Highlight the order
+  setTimeout(() => {
+    const rows = document.querySelectorAll('#ordersTable tr');
+    rows.forEach(row => {
+      if (row.innerHTML.includes(orderId)) {
+        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        row.style.background = '#fef5e7';
+        setTimeout(() => row.style.background = '', 3000);
+      }
+    });
+  }, 500);
+}
+
+// Clear all notifications
+function clearNotifications() {
+  notifications.forEach(n => n.read = true);
+  saveNotifications();
+  showToast('✅ সব notification পঠিত হিসেবে চিহ্নিত');
+}
+
+// Save notifications
+function saveNotifications() {
+  localStorage.setItem('adminNotifications', JSON.stringify(notifications));
+  updateNotificationBadge();
+  renderNotifications();
+}
+
+// Check for new orders
+async function checkNewOrders() {
+  try {
+    const res = await fetch(API + '/orders');
+    if (!res.ok) return;
+    
+    const orders = await res.json();
+    
+    // Find new orders not in notifications
+    const existingIds = notifications.map(n => n.id);
+    const newOrders = orders.filter(o => !existingIds.includes(o.id));
+    
+    if (newOrders.length > 0) {
+      newOrders.forEach(order => {
+        notifications.push({
+          id: order.id,
+          customer: order.customer,
+          total: order.total,
+          items: order.items,
+          createdAt: order.createdAt,
+          read: false
+        });
+      });
+      
+      saveNotifications();
+      
+      // Show toast
+      if (newOrders.length === 1) {
+        showToast(`🔔 নতুন অর্ডার! #${newOrders[0].id}`);
+      } else {
+        showToast(`🔔 ${newOrders.length}টি নতুন অর্ডার!`);
+      }
+      
+      // Play sound (optional)
+      playNotificationSound();
+    }
+  } catch (err) {
+    console.error('Check orders error:', err);
+  }
+}
+
+// Play notification sound
+function playNotificationSound() {
+  try {
+    const audio = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQBvT18=');
+    audio.volume = 0.3;
+    audio.play().catch(() => {});
+  } catch (err) {
+    // Ignore
+  }
+}
+
+// Start notification polling
+function startNotificationPolling() {
+  if (notifCheckInterval) return;
+  
+  // Check every 10 seconds
+  notifCheckInterval = setInterval(checkNewOrders, 10000);
+  
+  // Initial check
+  checkNewOrders();
+}
+
+// Stop polling
+function stopNotificationPolling() {
+  if (notifCheckInterval) {
+    clearInterval(notifCheckInterval);
+    notifCheckInterval = null;
+  }
+}
+
+// Initialize notifications when dashboard loads
+const originalShowDashboard = window.showDashboard;
+window.showDashboard = function() {
+  if (originalShowDashboard) originalShowDashboard.apply(this, arguments);
+  updateNotificationBadge();
+  renderNotifications();
+  startNotificationPolling();
+};
+
+// Update logout to stop polling
+const originalLogout = window.logout;
+window.logout = function() {
+  stopNotificationPolling();
+  if (originalLogout) originalLogout.apply(this, arguments);
+};

@@ -7,6 +7,156 @@
     <title>অ্যাডমিন প্যানেল - আমার ফার্ম</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
+      /* Notification Styles */
+.notif-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.notif-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.notif-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.notif-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #e53e3e;
+  color: white;
+  border-radius: 50%;
+  min-width: 22px;
+  height: 22px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  animation: pulse 2s infinite;
+  border: 2px solid #ed8936;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.notif-dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  width: 340px;
+  max-height: 450px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: none;
+  z-index: 9999;
+  color: #2d3748;
+}
+
+.notif-dropdown.open {
+  display: block;
+  animation: slideDown 0.3s;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.notif-header {
+  padding: 15px 20px;
+  background: #fef5e7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.notif-header strong {
+  color: #7b341e;
+}
+
+.notif-list {
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.notif-item {
+  padding: 12px 20px;
+  border-bottom: 1px solid #f7fafc;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.notif-item:hover {
+  background: #fef5e7;
+}
+
+.notif-item.unread {
+  background: #fffaf0;
+  border-left: 3px solid #ed8936;
+}
+
+.notif-item-id {
+  font-size: 0.75rem;
+  color: #ed8936;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.notif-item-customer {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.notif-item-details {
+  font-size: 0.8rem;
+  color: #718096;
+  margin-top: 3px;
+}
+
+.notif-item-amount {
+  font-weight: bold;
+  color: #38a169;
+  font-size: 0.85rem;
+  float: right;
+}
+
+.notif-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: #a0aec0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .notif-dropdown {
+    width: 90vw;
+    right: -50px;
+  }
+}
         .admin-container {
             max-width: 1200px;
             margin: 30px auto;
@@ -200,15 +350,33 @@
 
 <body>
 
-    <header>
-        <div class="container header-content">
-            <div class="logo">🐔 আমার ফার্ম - অ্যাডমিন</div>
-            <nav>
-                <a href="index.html">হোম</a>
-                <a href="#" onclick="logout(); return false;">লগআউট</a>
-            </nav>
+   <header>
+  <div class="container header-content">
+    <div class="logo">🐔 আমার মুরগি ফার্ম - অ্যাডমিন</div>
+    <nav>
+      <a href="index.html">হোম</a>
+      
+      <!-- Notification Bell -->
+      <div class="notif-wrapper">
+        <button class="notif-btn" id="notifBtn" onclick="toggleNotifications()">
+          🔔
+          <span class="notif-badge" id="notifBadge" style="display:none;">0</span>
+        </button>
+        <div class="notif-dropdown" id="notifDropdown">
+          <div class="notif-header">
+            <strong>🔔 নতুন অর্ডার</strong>
+            <button onclick="clearNotifications()" style="background:none;border:none;color:#718096;cursor:pointer;font-size:0.9rem;">সব পঠিত করুন</button>
+          </div>
+          <div class="notif-list" id="notifList">
+            <div class="notif-empty">কোনো নতুন অর্ডার নেই</div>
+          </div>
         </div>
-    </header>
+      </div>
+      
+      <a href="#" onclick="logout(); return false;">লগআউট</a>
+    </nav>
+  </div>
+</header>
 
     <div id="loginScreen" class="login-box">
         <h2>🔐 অ্যাডমিন লগইন</h2>

@@ -14,7 +14,7 @@ body {
 header {
     background: linear-gradient(135deg, #f6ad55, #ed8936);
     color: white;
-    padding: 15px 0;
+    padding: 10px 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
@@ -36,7 +36,7 @@ header {
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: 1    .8rem;
     font-weight: bold;
 }
 
@@ -91,26 +91,72 @@ nav a:hover {
 }
 
 .hero {
-    background: linear-gradient(135deg, #fef5e7, #fbd38d);
-    padding: 60px 20px;
-    text-align: center;
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 2.99;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(246, 173, 85, 0.55), rgba(237, 137, 54, 0.55));
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  color: white;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
-    color: #7b341e;
-    margin-bottom: 15px;
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
 }
 
 .hero p {
-    font-size: 1.2rem;
-    color: #975a16;
-    max-width: 700px;
-    margin: 0 auto;
+  font-size: 1.3rem;
+  color: white;
+  max-width: 700px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+}
+
+@media (max-width: 1000px) {
+  .hero {
+    height: 400px;
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .hero p {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
 }
 
 .products-section {
-    padding: 40px 0;
+    padding: 25px 0;
 }
 
 .section-title {
@@ -589,4 +635,158 @@ footer {
     nav {
         gap: 10px;
     }
+}
+/* ============================================
+   NOTIFICATION SYSTEM
+   ============================================ */
+
+.notif-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.notif-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.notif-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.notif-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #e53e3e;
+  color: white;
+  border-radius: 50%;
+  min-width: 22px;
+  height: 22px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  animation: pulse 2s infinite;
+  border: 2px solid #ed8936;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.notif-dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  width: 340px;
+  max-height: 450px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: none;
+  z-index: 9999;
+  color: #2d3748;
+  text-align: left;
+}
+
+.notif-dropdown.open {
+  display: block;
+  animation: slideDown 0.3s;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.notif-header {
+  padding: 15px 20px;
+  background: #fef5e7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.notif-header strong {
+  color: #7b341e;
+}
+
+.notif-list {
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.notif-item {
+  padding: 12px 20px;
+  border-bottom: 1px solid #f7fafc;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.notif-item:hover {
+  background: #fef5e7;
+}
+
+.notif-item.unread {
+  background: #fffaf0;
+  border-left: 3px solid #ed8936;
+}
+
+.notif-item-id {
+  font-size: 0.75rem;
+  color: #ed8936;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.notif-item-customer {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.notif-item-details {
+  font-size: 0.8rem;
+  color: #718096;
+  margin-top: 3px;
+}
+
+.notif-item-amount {
+  font-weight: bold;
+  color: #38a169;
+  font-size: 0.85rem;
+  float: right;
+}
+
+.notif-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: #a0aec0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .notif-dropdown {
+    width: 90vw;
+    right: -100px;
+  }
 }

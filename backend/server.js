@@ -13,9 +13,7 @@ const db = low(adapter);
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // ============ API Routes ============
 app.use('/api/products', require('./routes/products')(db));
@@ -25,41 +23,61 @@ app.use('/api/auth', require('./routes/auth')(db));
 // ============ Static frontend ============
 const frontendPath = path.join(__dirname, '..', 'frontend');
 
-// Manual route for HTML files - ensures correct content-type
+// Serve CSS files explicitly
+app.get('/css/:file', (req, res) => {
+  const filePath = path.join(frontendPath, 'css', req.params.file);
+  res.setHeader('Content-Type', 'text/css; charset=utf-8');
+  res.sendFile(filePath);
+});
+
+// Serve JS files explicitly
+app.get('/js/:file', (req, res) => {
+  const filePath = path.join(frontendPath, 'js', req.params.file);
+  res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+  res.sendFile(filePath);
+});
+
+// Serve videos
+app.get('/videos/:file', (req, res) => {
+  const filePath = path.join(frontendPath, 'Videos', req.params.file);
+  res.setHeader('Content-Type', 'video/mp4');
+  res.sendFile(filePath);
+});
+
+// Serve Videos (capital V)
+app.get('/Videos/:file', (req, res) => {
+  const filePath = path.join(frontendPath, 'Videos', req.params.file);
+  res.setHeader('Content-Type', 'video/mp4');
+  res.sendFile(filePath);
+});
+
+// Serve HTML files
 app.get('/', (req, res) => {
-    res.type('html');
-    res.sendFile(path.join(frontendPath, 'index.html'));
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 app.get('/index.html', (req, res) => {
-    res.type('html');
-    res.sendFile(path.join(frontendPath, 'index.html'));
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 app.get('/track.html', (req, res) => {
-    res.type('html');
-    res.sendFile(path.join(frontendPath, 'track.html'));
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.sendFile(path.join(frontendPath, 'track.html'));
 });
 
 app.get('/admin.html', (req, res) => {
-    res.type('html');
-    res.sendFile(path.join(frontendPath, 'admin.html'));
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.sendFile(path.join(frontendPath, 'admin.html'));
 });
 
-// Static files (CSS, JS, images)
-app.use(express.static(frontendPath, {
-    setHeaders: function (res, filePath) {
-        if (filePath.endsWith('.css')) {
-            res.setHeader('Content-Type', 'text/css; charset=utf-8');
-        } else if (filePath.endsWith('.js')) {
-            res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
-        }
-    }
-}));
+// Static files fallback
+app.use(express.static(frontendPath));
 
-app.listen(PORT, function () {
-    console.log('========================================');
-    console.log('Chicken Farm Server running');
-    console.log('Open: http://localhost:' + PORT);
-    console.log('========================================');
+app.listen(PORT, function() {
+  console.log('========================================');
+  console.log('Chicken Farm Server running');
+  console.log('Open: http://localhost:' + PORT);
+  console.log('========================================');
 });

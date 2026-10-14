@@ -25,7 +25,7 @@
       "name": "দেশি মুরগির ডিম",
       "price": 15,
       "unit": "পিস",
-      "stock": 494,
+      "stock": 493,
       "image": "https://i.postimg.cc/N0dW6r4N/valeria-reverdo-ayziw-IGP8TI-unsplash.jpg",
       "description": "তাজা দেশি মুরগির ডিম।",
       "category": "ডিম"
@@ -35,7 +35,7 @@
       "name": "ব্রয়লার ডিম",
       "price": 12,
       "unit": "পিস",
-      "stock": 800,
+      "stock": 799,
       "image": "https://images.unsplash.com/photo-1518569656558-1f25e69d93d7?w=500",
       "description": "ব্রয়লার মুরগির ডিম।",
       "category": "ডিম"
@@ -106,6 +106,56 @@
       "total": 280,
       "status": "pending",
       "createdAt": "2026-10-14T03:35:54.667Z"
+    },
+    {
+      "id": "870814CD",
+      "customer": {
+        "name": "Fahmida",
+        "phone": "01935548558",
+        "address": "uttarkhan",
+        "note": "df",
+        "paymentMethod": "cod",
+        "transactionId": "",
+        "senderNumber": ""
+      },
+      "items": [
+        {
+          "id": "4",
+          "name": "ব্রয়লার ডিম",
+          "price": 12,
+          "unit": "পিস",
+          "image": "https://images.unsplash.com/photo-1518569656558-1f25e69d93d7?w=500",
+          "quantity": 1
+        }
+      ],
+      "total": 12,
+      "status": "confirmed",
+      "createdAt": "2026-10-14T04:17:37.098Z"
+    },
+    {
+      "id": "194DFA4C",
+      "customer": {
+        "name": "Azizul Hakim",
+        "phone": "01935548559",
+        "address": "uttara",
+        "note": "d",
+        "paymentMethod": "cod",
+        "transactionId": "",
+        "senderNumber": ""
+      },
+      "items": [
+        {
+          "id": "3",
+          "name": "দেশি মুরগির ডিম",
+          "price": 15,
+          "unit": "পিস",
+          "image": "https://i.postimg.cc/N0dW6r4N/valeria-reverdo-ayziw-IGP8TI-unsplash.jpg",
+          "quantity": 1
+        }
+      ],
+      "total": 15,
+      "status": "pending",
+      "createdAt": "2026-10-14T04:36:33.226Z"
     }
   ],
   "admin": {
